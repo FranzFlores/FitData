@@ -8,6 +8,7 @@ var exerciseSchema = new Schema({
     description: { type: String },
     image: { type: String },
     url: { type: String },
+    status: { type: Boolean, required: true, default: true },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
 module.exports = mongoose.model("Exercise", exerciseSchema);

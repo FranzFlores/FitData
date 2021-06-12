@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Rutas
+app.use('/api/user', require('./routes/user.route'));
+
 //Iniciar el Servidor
 app.listen(app.get('port'),() => {
     console.log(`Server on Port ${app.get('port')}`);
