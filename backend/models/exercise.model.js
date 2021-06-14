@@ -8,6 +8,7 @@ var exerciseSchema = new Schema({
     description: { type: String },
     multimedia: { type: String },
     url: { type: String },
+    muscle_group: { type: String},
     status: { type: Boolean, required: true, default: true },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

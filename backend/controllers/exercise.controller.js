@@ -15,6 +15,7 @@ ExerciseController.createExercise = (req, res) => {
                 new Exercise({
                     name: req.body.name,
                     description: req.body.description,
+                    muscle_group: req.body.muscle_group,
                     multimedia: 'null',
                     url: req.body.url
                 }).save()
@@ -67,6 +68,7 @@ ExerciseController.updateExercise = (req, res) => {
     let exerciseUpdate = {
         name: req.body.name,
         description: req.body.description,
+        muscle_group: req.body.muscle_group,
         url: req.body.url
     }
     Exercise.find({ name: req.body.name })
