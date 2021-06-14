@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 var exerciseSchema = new Schema({
     name: { type: String, require: true },
     description: { type: String },
-    image: { type: String },
+    multimedia: { type: String },
     url: { type: String },
     status: { type: Boolean, required: true, default: true },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });

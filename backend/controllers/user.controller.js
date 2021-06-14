@@ -68,6 +68,17 @@ UserController.getUsers = (req, res) => {
         });
 }
 
+UserController.getUser = (req, res) => {
+    User.findById(req.params.id)
+        .then((user) => {
+            res.status(200).send(user);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({ msg: 'Error al devolver usuario' });
+        });
+}
+
 UserController.updateUser = (req, res) => {
     var userUpdate = {
         name: req.body.name,
