@@ -8,7 +8,8 @@ var sleepSchema = new Schema({
     date: { type: Date, require: true },
     idUser: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        require: true
     },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

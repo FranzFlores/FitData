@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/user', require('./routes/user.route'));
 app.use('/api/exercise', require('./routes/exercise.route'));
 app.use('/api/activity', require('./routes/activity.route'));
+app.use('/api/sleep', require('./routes/sleep.route'));
 
 //Iniciar el Servidor
 app.listen(app.get('port'),() => {
