@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Rutas
 app.use('/api/user', require('./routes/user.route'));
 app.use('/api/exercise', require('./routes/exercise.route'));
+app.use('/api/activity', require('./routes/activity.route'));
 
 //Iniciar el Servidor
 app.listen(app.get('port'),() => {
