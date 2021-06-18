@@ -4,7 +4,7 @@
   "description": "App para registro de progreso de ejercicios",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon backend/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/FranzFlores/FitData#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-multiparty": "^2.2.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.13",
     "morgan": "^1.10.0"
   },
