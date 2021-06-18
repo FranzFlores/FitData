@@ -3,7 +3,6 @@
 const Exercise = require('../models/exercise.model');
 const Activity = require('../models/activity.model');
 
-
 var ActivityController = {};
 
 ActivityController.createActivity = (req, res) => {

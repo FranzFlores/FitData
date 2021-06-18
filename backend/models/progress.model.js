@@ -6,10 +6,13 @@ const { Schema } = mongoose;
 var progressSchema = new Schema({
     weight: { type: Number, require: true },
     measurementDate: { type: Date, require: true },
-    image: { type: String },
+    images: [{
+        fileName: { type: String }
+    }],
     idUser: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        require: true
     },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
