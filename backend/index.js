@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const errors = require('http-errors');
 const path = require('path');
 const cookie = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 const { mongoose } = require('./database');
@@ -17,6 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookie());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:4200'
+}));
 
 //Rutas
 app.use('/api/user', require('./routes/user.route'));
