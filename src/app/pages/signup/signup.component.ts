@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
       email: [this.user.email, Validators.required],
       password:[this.user.password, Validators.required],
       height: [this.user.height, Validators.required]
-    })
+    });
   }
 
   onSubmit() {

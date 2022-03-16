@@ -14,7 +14,6 @@ UserController.signup = (req, res) => {
             if (userResult) {
                 res.status(200).send({ msg: 'Existe' });
             } else {
-                console.log(req.body);
                 new User({
                     name: req.body.name,
                     lastName: req.body.lastName,

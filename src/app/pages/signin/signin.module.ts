@@ -4,21 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SignInRoutingModule } from './signin-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { SignUpRoutingModule } from './signup-routing.module';
-
-
-import { SignupComponent } from './signup.component';
+import { SigninComponent } from './signin.component';
 
 @NgModule({
   declarations: [
-    SignupComponent
+    SigninComponent
   ],
   imports: [
     CommonModule,
-    SignUpRoutingModule,
+    SignInRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
@@ -28,4 +26,4 @@ import { SignupComponent } from './signup.component';
     MatSnackBarModule
   ]
 })
-export class SignupModule { }
+export class SigninModule { }

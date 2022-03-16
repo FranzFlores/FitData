@@ -1,0 +1,33 @@
+<div class="signin">
+    <div class="content">
+        <h2 class="title">Inicio de Sesión</h2>
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Correo Electrónico</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%" class="box-button">
+                    <button mat-raised-button type="submit">
+                        <span>Iniciar Sesión</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
