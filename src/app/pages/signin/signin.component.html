@@ -23,7 +23,7 @@
             <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
                 fxFlexAlign="center">
                 <div fxFlex="100%" class="box-button">
-                    <button mat-raised-button type="submit">
+                    <button  mat-raised-button type="submit" [disabled]="formLogin.invalid">
                         <span>Iniciar Sesión</span>
                     </button>
                 </div>

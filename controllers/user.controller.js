@@ -42,17 +42,17 @@ UserController.signup = (req, res) => {
 UserController.signin = (req, res) => {
     User.findOne({ email: req.body.email })
         .then((userResult) => {
-            if (!userResult) res.status(401).send({ msg: 'El usuario no está registrado' });
+            if (!userResult) return res.status(401).send({ msg: 'El usuario no está registrado' });
             if (helpers.matchPassword(req.body.password, userResult.password)) {
                 const token = jwt.sign({ _id: userResult._id }, helpers.SECRET_KEY);
-                res.status(200).json({ token });
+                return res.status(200).json({ token });
             } else {
-                res.status(401).send({ msg: 'Clave Incorrecta' });
+                return res.status(400).send({ msg: 'Clave Incorrecta' });
             }
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).send({ msg: 'Error al iniciar sesión' });
+            return res.status(500).send({ msg: 'Error al iniciar sesión' });
         });
 }
 
