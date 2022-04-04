@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &-app-name{
+    margin-left: 8px;
+  }
+
+  &-logout-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-logout-button {
+    background: #161616;
+    color: #e5e4e4;
+    padding: 10px;
+    width: 70%;
+    border-radius: 7px;
+  }
+}
+
+.is-mobile .toolbar{
+  position: fixed;
+  z-index: 2;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+mat-toolbar {
+  border: 1px solid;
+}
+
+mat-sidenav {
+  width: 210px;  
+  background: whitesmoke;
+}
+
+mat-sidenav-content {
+  background: #161616;
+  color: aliceblue;
+}

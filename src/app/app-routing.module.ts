@@ -13,7 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'manager',
-        loadChildren: () => import('./pages/main/main-routing.module').then(m => m.MainRoutingModule),
+        loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
         canActivate: [AuthGuard]
     }
 ];

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+
 import { Router } from '@angular/router';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,10 +11,21 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(
-    private authService: AuthenticationService,
-    private router: Router
-  ) { }
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private authService: AuthenticationService,
+    private router: Router) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+ 
 
   ngOnInit(): void {
   }

@@ -1,4 +1,28 @@
-<div class="main">
-    <h1>Bienvenido al Sistema</h1>
-    <button (click)="logout()">Salir del Sistema</button>
+<div class="main" [class.main-is-mobile]="mobileQuery.matches">
+    <mat-toolbar (click)="snav.toggle()" class="toolbar">
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="main-app-name">FitData</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <mat-nav-list>
+                <a mat-list-item routerLink=".">Ejercicios</a>
+                <a mat-list-item routerLink=".">Mi Progreso</a>
+                <a mat-list-item routerLink=".">Mi Perfil</a>
+                <a mat-list-item routerLink=".">Usuarios</a>
+            </mat-nav-list>
+            <div class="main-logout-button-container">
+                <button class="main-logout-button" (click)="logout()">Salir</button>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid, error eius, omnis eos
+                laborum ad explicabo sed fugiat maxime qui dolore. Dolorem quod, blanditiis soluta eligendi ad incidunt
+                quae!</p>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>
