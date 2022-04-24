@@ -1,0 +1,73 @@
+<div class="exercise-form">
+    <h2 mat-dialog-title class="exercise-form-title">Crear Ejercicio</h2>
+    <form [formGroup]="formExercise" (ngSubmit)="onSubmit()">
+        <mat-dialog-content>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill" class="exercise-form-input">
+                        <input placeholder="Nombre" matInput type="text" formControlName="name">
+                        <mat-label>Nombre</mat-label>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill" class="exercise-form-input">
+                        <input placeholder="Descripción" matInput type="text" formControlName="description">
+                        <mat-label>Descripción</mat-label>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill" class="exercise-form-input">
+                        <label for="exerciseFile">Cargar Archivo multimedia</label>
+                        <input id="exerciseFile" type="file" [fileUploadInputFor]="fileUploadExercise">
+                        <mat-file-upload-queue #fileUploadExercise [fileAlias]="'file'"
+                            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
+                            <mat-file-upload [file]="file" [id]="i"
+                                *ngFor="let file of fileUploadExercise.files; let i = index"></mat-file-upload>
+                        </mat-file-upload-queue>
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill" class="exercise-form-input">
+                        <mat-label>Grupo Muscular</mat-label>
+                        <mat-select formControlName="muscleGroup">
+                            <mat-option>Pectorales</mat-option>
+                            <mat-option>Hombros</mat-option>
+                            <mat-option>Trapecio</mat-option>
+                            <mat-option>Bíceps</mat-option>
+                            <mat-option>Tríceps</mat-option>
+                            <mat-option>Antebrazos</mat-option>
+                            <mat-option>Espalda</mat-option>
+                            <mat-option>Abdomen</mat-option>
+                            <mat-option>Piernas</mat-option>
+                            <mat-option>Gemelos</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+                fxFlexAlign="center">
+                <div fxFlex="100%">
+                    <mat-form-field appearance="fill" class="exercise-form-input">
+                        <input placeholder="Url" matInput type="url" formControlName="url">
+                        <mat-label>Url</mat-label>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="exercise-form-buttons">
+            <button mat-button mat-dialog-close>Cancelar</button>
+            <button type="submit" mat-button [mat-dialog-close]="exercise" cdkFocusInitial>Crear</button>
+        </mat-dialog-actions>
+    </form>
+</div>

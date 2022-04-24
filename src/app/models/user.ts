@@ -7,4 +7,6 @@ export interface User {
     role?: string;
     height?: number;
     status?: boolean;
+
+    token?: string;
 }

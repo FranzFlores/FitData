@@ -10,7 +10,7 @@
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
             fixedTopGap="56">
             <mat-nav-list>
-                <a mat-list-item routerLink=".">Ejercicios</a>
+                <a mat-list-item routerLink="exercises">Ejercicios</a>
                 <a mat-list-item routerLink=".">Mi Progreso</a>
                 <a mat-list-item routerLink=".">Mi Perfil</a>
                 <a mat-list-item routerLink=".">Usuarios</a>
@@ -20,9 +20,7 @@
             </div>
         </mat-sidenav>
         <mat-sidenav-content>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid, error eius, omnis eos
-                laborum ad explicabo sed fugiat maxime qui dolore. Dolorem quod, blanditiis soluta eligendi ad incidunt
-                quae!</p>
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

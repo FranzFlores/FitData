@@ -10,7 +10,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: ''
+        path: 'exercises',
+        loadChildren: () => import('../exercise/exercise.module').then(e => e.ExerciseModule),
       }
     ]
   }
