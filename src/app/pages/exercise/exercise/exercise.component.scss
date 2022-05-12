@@ -1,13 +1,16 @@
 .exercise {
-
+    &-button {
+        margin-bottom: 10px;
+    }
     &-title {
         font-size: 1.8rem;
         font-weight: bold;
         text-align: center;
         margin-top: 2%;
-    }
+    } 
 
-    &-card {
-        margin-top: auto;
-    }    
+    &__container-buttons {
+        display: flex;
+        justify-content: center;
+    }
 }

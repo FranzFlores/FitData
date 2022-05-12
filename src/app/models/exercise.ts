@@ -2,7 +2,7 @@ export interface Exercise {
     id?: number;
     name?: string;
     description?: string;
-    multimedia?: string;
+    multimedia?: File;
     url?: string;
     muscle_group?: string;
     status?: boolean;

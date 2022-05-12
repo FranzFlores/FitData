@@ -1,19 +1,27 @@
 <div class="exercise">
-    <h2 class="exercise-title">Ejercicios Disponibles</h2>
-    <div class="exercise-button">
-      <button mat-raised-button color="primary" (click)="openDialog()">Añadir Ejercicio</button>
+  <h2 class="exercise-title">Ejercicios Disponibles</h2>
+  <div class="exercise-button">
+    <button mat-raised-button color="primary" (click)="openDialog()">Añadir Ejercicio</button>
+  </div>
+
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="column" fxLayoutAlign=" stretch" *ngFor="let exercise of exercises">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{exercise.name}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="http://localhost:3000/api/exercise/getImage/{{exercise.multimedia}}"
+            alt="Imagen de ejercicio">
+          <mat-card-content>
+            <p>{{exercise.description}}</p>
+          </mat-card-content>
+          <mat-card-actions class="exercise__container-buttons">
+            <button mat-raised-button color="primary">Editar</button>
+            <button mat-raised-button color="warn">Eliminar</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
-    <mat-grid-list cols="3">
-        <mat-grid-tile>
-            <mat-card *ngFor="let exercise of exercises" class="exercise-card">
-                <mat-card-header>
-                  <mat-card-title>{{exercise.name}}</mat-card-title>
-                </mat-card-header>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Imagen de ejercicio">
-                <mat-card-content>
-                  <p>{{exercise.description}}</p>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+  </div>
 </div>

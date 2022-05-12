@@ -22,17 +22,16 @@
             </div>
             <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
                 fxFlexAlign="center">
-                <div fxFlex="100%">
-                    <mat-form-field appearance="fill" class="exercise-form-input">
-                        <label for="exerciseFile">Cargar Archivo multimedia</label>
-                        <input id="exerciseFile" type="file" [fileUploadInputFor]="fileUploadExercise">
-                        <mat-file-upload-queue #fileUploadExercise [fileAlias]="'file'"
-                            [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
-                            <mat-file-upload [file]="file" [id]="i"
-                                *ngFor="let file of fileUploadExercise.files; let i = index"></mat-file-upload>
-                        </mat-file-upload-queue>
-
-                    </mat-form-field>
+                <div fxFlex="100%" class="exercise-form-multimedia-container">
+                    <label for="exerciseFile">Archivo multimedia</label>
+                    <button type="button" (click)="fileInput.click()" class="exercise-form__multimedia-btn">Cargar
+                        Archivo</button>
+                    <input #fileInput hidden id="exerciseFile" type="file" [fileUploadInputFor]="fileUploadExercise">
+                    <mat-file-upload-queue #fileUploadExercise [fileAlias]="'file'" [uploadAllLabel]=null
+                        [removeAllLabel]="'Eliminar archivos'">
+                        <mat-file-upload [file]="file" [id]="i"
+                            *ngFor="let file of fileUploadExercise.files; let i = index"></mat-file-upload>
+                    </mat-file-upload-queue>
                 </div>
             </div>
             <div fxLayout="row" fxLayout.xs="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
@@ -40,17 +39,17 @@
                 <div fxFlex="100%">
                     <mat-form-field appearance="fill" class="exercise-form-input">
                         <mat-label>Grupo Muscular</mat-label>
-                        <mat-select formControlName="muscleGroup">
-                            <mat-option>Pectorales</mat-option>
-                            <mat-option>Hombros</mat-option>
-                            <mat-option>Trapecio</mat-option>
-                            <mat-option>Bíceps</mat-option>
-                            <mat-option>Tríceps</mat-option>
-                            <mat-option>Antebrazos</mat-option>
-                            <mat-option>Espalda</mat-option>
-                            <mat-option>Abdomen</mat-option>
-                            <mat-option>Piernas</mat-option>
-                            <mat-option>Gemelos</mat-option>
+                        <mat-select formControlName="muscle_group">
+                            <mat-option value="Pectorales">Pectorales</mat-option>
+                            <mat-option value="Hombros">Hombros</mat-option>
+                            <mat-option value="Trapecio">Trapecio</mat-option>
+                            <mat-option value="Bíceps">Bíceps</mat-option>
+                            <mat-option value="Tríceps">Tríceps</mat-option>
+                            <mat-option value="Antebrazos">Antebrazos</mat-option>
+                            <mat-option value="Espalda">Espalda</mat-option>
+                            <mat-option value="Abdomen">Abdomen</mat-option>
+                            <mat-option value="Piernas">Piernas</mat-option>
+                            <mat-option value="Gemelos">Gemelos</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

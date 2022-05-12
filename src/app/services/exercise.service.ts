@@ -20,5 +20,13 @@ export class ExerciseService {
     return this.http.get<Exercise[]>(`${this.URL_API}/all`);
   }
 
+  //Crear Ejercicio
+  createExercise(exercise: Exercise) {
+    const formData = new FormData();
+    formData.append('multimedia',exercise.multimedia, exercise.multimedia.name);
+    formData.append('exercise', JSON.stringify(exercise));
+    return this.http.post(`${this.URL_API}/create`, formData);
+  }
+
 
 }

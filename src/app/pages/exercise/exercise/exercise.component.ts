@@ -13,16 +13,24 @@ import { ExerciseFormComponent } from '../exercise-form/exercise-form.component'
 })
 export class ExerciseComponent implements OnInit {
 
-  exercises:Exercise[] = [];
+  exercises: Exercise[] = [];
+  scale: number;
 
   constructor(
-    private excersiceService:ExerciseService,
-    private snackBar: MatSnackBar, 
+    private excersiceService: ExerciseService,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.fetchExercises();
+    this.scale = (window.innerWidth <= 500) ? 1 : 3;
+  }
+
+
+  //Columnas del grid
+  onResize(event) {
+    this.scale = (event.target.innerWidth <= 500) ? 1 : 3;
   }
 
   //Obtener listado de ejercicios
@@ -43,6 +51,12 @@ export class ExerciseComponent implements OnInit {
     const dialogExercise = this.dialog.open(ExerciseFormComponent, {
       height: '500px',
       width: '700px',
+    });
+
+    dialogExercise.afterClosed().subscribe(result => {
+      if (result) {
+        this.fetchExercises();
+      }
     });
   }
 

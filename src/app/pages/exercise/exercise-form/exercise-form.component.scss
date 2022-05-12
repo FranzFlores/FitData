@@ -1,3 +1,6 @@
+@import '~@angular/material/theming';
+@import '../../../../styles.scss';
+
 .exercise-form {
 
     &-title {
@@ -13,6 +16,17 @@
         justify-content: center;
     }
 
+    &-multimedia-container {
+        margin-bottom: 10px;
+    }
+
+    &__multimedia-btn {
+        background-color: $fitdata-app-primary;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+    }
 
 }
 
