@@ -2,8 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
-
+const helpers = require('../lib/helpers');
 const Exercise = require('../models/exercise.model');
+
 var ExerciseController = {};
 
 ExerciseController.createExercise = (req, res) => {
@@ -13,36 +14,22 @@ ExerciseController.createExercise = (req, res) => {
             if (results.length > 0) {
                 res.status(200).send({ msg: 'El ejercicio ya está registrado' });
             } else {
-                if (req.files) {
-                    let filePath = req.files.multimedia.path;
-                    let fileSplit = (process.platform == 'linux') ?  file_path.split('\\') : filePath.split('\/');
-                    let fileName = fileSplit[fileSplit.length - 1];
-                    let extSplit = fileName.split('\.');
-                    var fileExt = extSplit[1];
+                let file = (req.files) ? helpers.getImagePath(req.files.multimedia) : 'default.png';
 
-                    if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpge' || fileExt == 'JPG') {
+                new Exercise({ ...body, multimedia: file })
+                    .save()
+                    .then(newExercise => {
+                        if (!newExercise) {
+                            res.status(404).send({ msg: 'No se pudo crear el ejercicio' });
+                        } else {
+                            res.status(200).json(newExercise);
 
-                        new Exercise({ ...body, multimedia: fileName })
-                            .save()
-                            .then(newExercise => {
-                                if (!newExercise) {
-                                    res.status(404).send({ msg: 'No se pudo crear el ejercicio' });
-                                } else {
-                                    res.status(200).json(newExercise);
-                                }
-                            })
-                            .catch(err => {
-                                console.log(err);
-                                res.status(500).send({ msg: 'Ocurrió un error al crear el ejercicio' });
-                            });
-                    } else {
-                        //Elimina el archivo subido en caso de ser inválido
-                        fs.unlink(filePath, (err) => {
-                            console.log(err);
-                            return res.status(200).send({ msg: 'La extensión no es válida' });
-                        });
-                    }
-                }
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).send({ msg: 'Ocurrió un error al crear el ejercicio' });
+                    });
             }
         })
         .catch(err => {
@@ -50,6 +37,8 @@ ExerciseController.createExercise = (req, res) => {
             res.status(500).send({ msg: 'Ocurrió un error al crear el ejercicio' });
         });
 };
+
+
 
 ExerciseController.getExercises = (req, res) => {
     Exercise.find({})

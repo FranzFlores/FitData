@@ -13,7 +13,7 @@ export class ExerciseService {
   readonly URL_API = 'http://localhost:3000/api/exercise';
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   //Obtener todos los ejercicios ingresados
   fetchExercises() {
@@ -23,10 +23,20 @@ export class ExerciseService {
   //Crear Ejercicio
   createExercise(exercise: Exercise) {
     const formData = new FormData();
-    formData.append('multimedia',exercise.multimedia, exercise.multimedia.name);
+    if (exercise.multimedia) {
+      formData.append('multimedia', exercise.multimedia, exercise.multimedia.name);
+    }
     formData.append('exercise', JSON.stringify(exercise));
     return this.http.post(`${this.URL_API}/create`, formData);
   }
 
+  updateExercise(exercise: Exercise) {
+    const formData = new FormData();
+    if (exercise.multimedia) {
+      formData.append('multimedia', exercise.multimedia, exercise.multimedia.name);
+    }
+    formData.append('exercise', JSON.stringify(exercise));
+    return this.http.put(`${this.URL_API}/update/${exercise.id}`, formData);
+  }
 
 }
