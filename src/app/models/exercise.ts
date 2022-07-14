@@ -1,5 +1,5 @@
 export interface Exercise {
-    id?: number;
+    _id?: number;
     name?: string;
     description?: string;
     multimedia?: File;

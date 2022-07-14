@@ -47,10 +47,11 @@ export class ExerciseComponent implements OnInit {
     );
   }
 
-  openDialog() {
+  openDialog(exercise?: Exercise) {
     const dialogExercise = this.dialog.open(ExerciseFormComponent, {
       height: '500px',
       width: '700px',
+      data: exercise
     });
 
     dialogExercise.afterClosed().subscribe(result => {
@@ -60,4 +61,14 @@ export class ExerciseComponent implements OnInit {
     });
   }
 
+  // Actualizar estado de ejercicio
+  updateExerciseStatus(id: number) {
+    this.excersiceService.updateState(id).pipe(first()).subscribe({
+      next: res => {
+        this.snackBar.open("Ejercicio actualizado correctamente", null, { duration: 3000 });
+        this.fetchExercises();
+      }
+    }
+    );
+  }
 }

@@ -22,37 +22,65 @@ export class ExerciseFormComponent implements OnInit {
     private exerciseService: ExerciseService,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ExerciseFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Exercise,
   ) { }
 
   ngOnInit(): void {
+    this.exercise = (this.data) ? this.data : {};
     this.formExercise = this.formBuilder.group({
-        name: [this.exercise.name, [Validators.required]],
-        description: [this.exercise.description],
-        multimedia: [this.exercise.multimedia],
-        muscle_group: [this.exercise.muscle_group],
-        url: [this.exercise.url],
+      _id: [this.exercise._id],
+      name: [this.exercise.name, [Validators.required]],
+      description: [this.exercise.description],
+      multimedia: [this.exercise.multimedia],
+      muscle_group: [this.exercise.muscle_group],
+      url: [this.exercise.url],
     });
   }
 
   onSubmit() {
-    this.uploadFileInput.fileUploads.forEach(element => {
-      this.formExercise.patchValue({
-        multimedia: element.file
+  
+    if (this.uploadFileInput.fileUploads.length > 0) {
+      this.uploadFileInput.fileUploads.forEach(element => {
+        this.formExercise.patchValue({
+          multimedia: element.file,
+          _id: this.exercise._id
+        });
       });
-     });
+    } else {
+      this.formExercise.patchValue({
+        multimedia: null,
+        _id: this.exercise._id
+      });
+    }
+    console.log(this.formExercise.value);
+    
 
-    this.exerciseService.createExercise(this.formExercise.value).pipe(first()).subscribe({
-      next: res => {
-        this.snackBar.open('Ejercicio creado correctamente', 'X', { duration: 3000 });
-        this.formExercise.reset();
-        this.dialogRef.close(true);
-      },
-      error: err => {
-        console.log('Error' + err);
-        this.snackBar.open("Error al crear el ejercicio", null, { duration: 3000 });
-        this.dialogRef.close(false);
-      }
-    });
+    if (this.data) {
+      this.exerciseService.updateExercise(this.formExercise.value).pipe(first()).subscribe({
+        next: res => {
+          this.dialogRef.close(res);
+          this.snackBar.open("Ejercicio actualizado correctamente", null, { duration: 3000 });
+          this.formExercise.reset();
+        },
+        error: err => {
+          console.log('Error' + err);
+          this.snackBar.open("Error al actualizar el ejercicio", null, { duration: 3000 });
+          this.dialogRef.close(false);
+        }
+      });
+    } else {
+      this.exerciseService.createExercise(this.formExercise.value).pipe(first()).subscribe({
+        next: res => {
+          this.dialogRef.close(res);
+          this.snackBar.open("Ejercicio creado correctamente", null, { duration: 3000 });
+          this.formExercise.reset();
+        }, error: err => {
+          console.log('Error' + err);
+          this.snackBar.open("Error al crear el ejercicio", null, { duration: 3000 });
+          this.dialogRef.close(false);
+        }
+      });
+    }
   }
 
 }

@@ -30,13 +30,18 @@ export class ExerciseService {
     return this.http.post(`${this.URL_API}/create`, formData);
   }
 
+  // Actualizar Ejercicio
   updateExercise(exercise: Exercise) {
-    const formData = new FormData();
+    const formData = new FormData();    
     if (exercise.multimedia) {
       formData.append('multimedia', exercise.multimedia, exercise.multimedia.name);
     }
-    formData.append('exercise', JSON.stringify(exercise));
-    return this.http.put(`${this.URL_API}/update/${exercise.id}`, formData);
+    formData.append('exercise', JSON.stringify(exercise));  
+    return this.http.put(`${this.URL_API}/update/${exercise._id}`, formData);
   }
 
+  // Cambiar estado de Ejercicio
+  updateState(id: Number) {
+    return this.http.put(`${this.URL_API}/updateState/${id}`, id);
+  }
 }

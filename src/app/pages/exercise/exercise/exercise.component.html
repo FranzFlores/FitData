@@ -17,7 +17,7 @@
             <p>{{exercise.description}}</p>
           </mat-card-content>
           <mat-card-actions class="exercise__container-buttons">
-            <button mat-raised-button color="primary">Editar</button>
+            <button mat-raised-button color="primary" (click)="openDialog(exercise)">Editar</button>
             <button mat-raised-button color="warn">Eliminar</button>
           </mat-card-actions>
         </mat-card>

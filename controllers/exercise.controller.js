@@ -38,10 +38,8 @@ ExerciseController.createExercise = (req, res) => {
         });
 };
 
-
-
 ExerciseController.getExercises = (req, res) => {
-    Exercise.find({})
+    Exercise.find({ status: true })
         .then(exercises => {
             res.status(200).send(exercises);
         })
@@ -67,43 +65,36 @@ ExerciseController.getExercise = (req, res) => {
 };
 
 ExerciseController.updateExercise = (req, res) => {
+    const body = JSON.parse(req.body.exercise);
     let exerciseUpdate = {
-        name: req.body.name,
-        description: req.body.description,
-        muscle_group: req.body.muscle_group,
-        url: req.body.url
+        name: body.name,
+        description: body.description,
+        muscle_group: body.muscle_group,
+        url: body.url
     }
-    Exercise.find({ name: req.body.name })
-        .then(results => {
-            if (results.length > 0) {
-                res.status(200).send({ msg: 'El ejercicio ya está registrado' });
+
+    Exercise.findOneAndUpdate({ _id: req.params.id }, exerciseUpdate)
+        .then(result => {
+            if (!result) {
+                res.status(404).send({ msg: 'No se pudo actualizar la informacion del ejercicio' });
             } else {
-                Exercise.findOneAndUpdate({ _id: req.params.id }, exerciseUpdate)
-                    .then(result => {
-                        if (!result) {
-                            res.status(404).send({ msg: 'No se pudo actualizar la informacion del ejercicio' });
-                        } else {
-                            res.status(200).send({ msg: 'Se ha actualizado la información del ejercicio con éxito' })
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        res.status(500).send({ msg: 'Ocurrió un error al actualizar el ejercicio' });
-                    });
+                console.log(result);
+                res.status(200).send({ msg: 'Se ha actualizado la información del ejercicio con éxito' })
             }
         })
         .catch(err => {
             console.log(err);
             res.status(500).send({ msg: 'Ocurrió un error al actualizar el ejercicio' });
         });
-};
+}
+
 
 
 ExerciseController.updateStatusExercise = (req, res) => {
     Exercise.findOneAndUpdate({ _id: req.params.id }, { status: req.body.status })
         .then(exercise => {
             if (!exercise) {
-                res.status(404).send({ msg: "Ocurrió un error al eliminar el ejercicio" });
+                res.status(404).send({ msg: "Ocurrió un error al realizar la acción" });
             } else {
                 if (exercise.status == false) {
                     res.status(200).send({ msg: 'Se elimino el ejercicio con éxito' });
