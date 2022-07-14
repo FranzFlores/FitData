@@ -42,8 +42,7 @@ ExerciseController.getExercises = (req, res) => {
     Exercise.find({ status: true })
         .then(exercises => {
             res.status(200).send(exercises);
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err);
             res.status(500).send({ msg: 'Ocurrió un error al consultar el ejercicio' });
         });
@@ -78,7 +77,6 @@ ExerciseController.updateExercise = (req, res) => {
             if (!result) {
                 res.status(404).send({ msg: 'No se pudo actualizar la informacion del ejercicio' });
             } else {
-                console.log(result);
                 res.status(200).send({ msg: 'Se ha actualizado la información del ejercicio con éxito' })
             }
         })

@@ -8,7 +8,11 @@ var exerciseSchema = new Schema({
     description: { type: String },
     multimedia: { type: String },
     url: { type: String },
-    muscle_group: { type: String},
+    id_muscle_group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Muscle_Group",
+        require: true
+    },
     status: { type: Boolean, required: true, default: true },
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 

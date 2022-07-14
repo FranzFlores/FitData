@@ -1,26 +1,29 @@
 <div class="exercise">
-  <h2 class="exercise-title">Ejercicios Disponibles</h2>
+  <h2 class="exercise-title">Grupos Musculares</h2>
 
   <div class="exercise-content">
     <div class="exercise-button">
       <button mat-raised-button color="primary" (click)="openDialog()">Añadir Ejercicio</button>
     </div>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="column" fxLayoutAlign=" stretch" *ngFor="let exercise of exercises">
-        <mat-card>
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="column" fxLayoutAlign=" stretch" *ngFor="let muscleGroup of muscleGroups">
+        <div class="muscle-group">
+          {{muscleGroup.name}}
+        </div>
+        <!-- <mat-card>
           <mat-card-header>
-            <mat-card-title>{{exercise.name}}</mat-card-title>
+            <mat-card-title >{{muscleGroup.name}}</mat-card-title>
           </mat-card-header>
           <img mat-card-image src="http://localhost:3000/api/exercise/getImage/{{exercise.multimedia}}"
             alt="Imagen de ejercicio">
           <mat-card-content>
-            <p>{{exercise.description}}</p>
+            <button mat-raised-button color="primary">Ver Detalles</button>
           </mat-card-content>
           <mat-card-actions class="exercise__container-buttons">
             <button mat-raised-button color="primary" (click)="openDialog(exercise)">Editar</button>
             <button mat-raised-button color="warn">Eliminar</button>
           </mat-card-actions>
-        </mat-card>
+        </mat-card> -->
       </div>
     </div>
   </div>
